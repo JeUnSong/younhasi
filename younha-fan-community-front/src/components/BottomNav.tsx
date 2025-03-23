@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const twitterFeed = [
     {
@@ -13,9 +13,27 @@ const twitterFeed = [
     },
 ];
 
-const youtubeVideoId = "3nrOpwpQMSg"; // IU 'Shopper' MV
-
 export default function HomeSections() {
+    const [videoId, setVideoId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchYoutubeVideo = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/youtube/latest`);
+                const data = await res.json();
+                const item = data.items?.[0];
+
+                if (item?.id?.videoId) {
+                    setVideoId(item.id.videoId);
+                }
+            } catch (err) {
+                console.error("유튜브 영상 불러오기 실패:", err);
+            }
+        };
+
+        fetchYoutubeVideo();
+    }, []);
+
     const noticeList = [
         "🔸 첫 번째 공지글 (2025.02.26)",
         "🔸 두 번째 공지글 (2025.01.06)",
@@ -29,35 +47,19 @@ export default function HomeSections() {
         "🔸 열 번째 공지글 (2024.08.07)",
         "🔸 열하나 번째 공지글 (2024.08.07)",
         "🔸 열두 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
     ];
 
     const renderList = (items: string[]) =>
         items.slice(0, 11).map((item, idx) => <li key={idx}>{item}</li>);
-
-    const [playVideo, setPlayVideo] = useState(false);
 
     const imageList = Array.from({ length: 6 }, (_, i) => `/dummy/insta/ins${i + 1}.png`);
 
     const renderInstagramList = (images: string[]) => (
         <ul className="grid grid-cols-3 grid-rows-3 gap-2">
             {images.slice(0, 6).map((src, idx) => (
-                <li
-                    key={idx}
-                    className={idx === 0 ? "col-span-2 row-span-2" : ""}
-                >
-                    <div className="w-full aspect-square relative rounded-md overflow-hidden">
-                        <Image
-                            src={src}
-                            alt={`insta-${idx}`}
-                            fill
-                            className="object-cover"
-                        />
+                <li key={idx} className={idx === 0 ? "col-span-2 row-span-2" : ""}>
+                    <div className="w-full aspect-square relative overflow-hidden">
+                        <Image src={src} alt={`insta-${idx}`} fill className="object-cover" />
                     </div>
                 </li>
             ))}
@@ -69,7 +71,7 @@ export default function HomeSections() {
             {twitterFeed.map((tweet, idx) => (
                 <div
                     key={idx}
-                    className="bg-white border border-gray-200 shadow-sm rounded-xl p-4 space-y-2 text-sm"
+                    className="bg-white border border-gray-200 shadow-sm p-4 space-y-2 text-sm"
                 >
                     <div className="flex items-center justify-between text-xs text-gray-600 font-medium">
                         <span>@{tweet.user} • {tweet.date}</span>
@@ -94,68 +96,55 @@ export default function HomeSections() {
         </div>
     );
 
-    const renderYoutube = () => (
-        <div className="w-full h-full relative">
-            {playVideo ? (
+    const renderYoutube = () => {
+        if (!videoId) return <div>로딩 중...</div>;
+
+        return (
+            <div className="w-full aspect-square relative overflow-hidden">
                 <iframe
-                    className="absolute inset-0 w-full h-full rounded-md"
-                    src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`}
-                    title="YouTube video player"
+                    src={`https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1`}
+                    className="w-full h-full"
+                    title="YouTube video"
                     allow="autoplay; encrypted-media"
                     allowFullScreen
                 />
-            ) : (
-                <div
-                    onClick={() => setPlayVideo(true)}
-                    className="absolute inset-0 w-full h-full cursor-pointer rounded-md overflow-hidden"
-                >
-                    <Image
-                        src={`https://img.youtube.com/vi/${youtubeVideoId}/hqdefault.jpg`}
-                        alt="Youtube thumbnail"
-                        fill
-                        className="object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center text-white text-4xl bg-black/30">
-                        ▶
-                    </div>
-                </div>
-            )}
-        </div>
-    );
+            </div>
+        );
+    };
 
     return (
         <div className="grid grid-cols-4 gap-1 mb-10 py-5 text-[13px] leading-relaxed">
-                {/* NOTICE */}
-                <div className="p-3 flex flex-col">
-                    <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
-                        NOTICE
-                    </h2>
-                    <ul className="flex-1 overflow-auto">{renderList(noticeList)}</ul>
-                </div>
+            {/* NOTICE */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                    NOTICE
+                </h2>
+                <ul className="flex-1 overflow-auto">{renderList(noticeList)}</ul>
+            </div>
 
-                {/* TWITTER */}
-                <div className="p-3 flex flex-col">
-                    <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
-                        TWITTER
-                    </h2>
-                    <div className="flex-1 overflow-hidden">{renderTwitterFeed()}</div>
-                </div>
+            {/* TWITTER */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                    TWITTER
+                </h2>
+                <div className="flex-1 overflow-hidden">{renderTwitterFeed()}</div>
+            </div>
 
-                {/* INSTAGRAM */}
-                <div className="p-3 flex flex-col">
-                    <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
-                        INSTAGRAM
-                    </h2>
-                    {renderInstagramList(imageList)}
-                </div>
+            {/* INSTAGRAM */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                    INSTAGRAM
+                </h2>
+                {renderInstagramList(imageList)}
+            </div>
 
-                {/* YOUTUBE */}
-                <div className="p-3 flex flex-col">
-                    <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
-                        YOUTUBE
-                    </h2>
-                    <div className="flex-1 relative w-full aspect-video">{renderYoutube()}</div>
-                </div>
+            {/* YOUTUBE */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                    YOUTUBE
+                </h2>
+                {renderYoutube()}
+            </div>
         </div>
     );
 }

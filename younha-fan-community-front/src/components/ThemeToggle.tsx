@@ -18,6 +18,7 @@ export default function ThemeToggle() {
                 <button
                     onClick={() => setOpen(true)}
                     className="
+                        font-nav
                         fixed bottom-20 right-4
                         bg-accent text-white
                         px-4 py-2 rounded-full

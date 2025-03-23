@@ -21,7 +21,7 @@ export default function Header() {
                     max-w-6xl
                     mx-auto
                     px-6
-                    py-4
+                    py-3
                     flex
                     items-center
                     justify-between
@@ -36,8 +36,9 @@ export default function Header() {
                         <button
                             key={i}
                             className="
+                                font-nav
                                 text-white
-                                font-light
+                                font-normal
                                 hover:text-white/80
                                 transition
                               "

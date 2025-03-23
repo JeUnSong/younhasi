@@ -15,7 +15,7 @@ export default function AudioPlayerToggle() {
                     className="
                                 fixed bottom-6 right-6 z-50
                                 flex items-center gap-2 px-4 py-2
-                                rounded-full text-sm font-semibold
+                                rounded-full text-sm font-nav
                                 shadow-md bg-accent text-white
                                 hover:bg-accent-dark transition
                               "
