@@ -1,17 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./src/**/*.{js,ts,jsx,tsx}"],
-    safelist: [
-        "bg-oceanBackground",
-        "bg-spaceBackground",
+    content: [
+        './src/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
         extend: {
-            colors: {
-                oceanBackground: "#001F3F",
-                oceanPrimary: "#0074D9",
-                spaceBackground: "#0C0020",
-                spacePrimary: "#663399",
+            keyframes: {
+                starFloat: {
+                    '0%': { transform: 'translateY(0)' },
+                    '100%': { transform: 'translateY(-20px)' },
+                },
+            },
+            animation: {
+                starFloat: 'starFloat 10s linear infinite',
             },
         },
     },

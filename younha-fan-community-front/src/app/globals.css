@@ -1,7 +1,83 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
 
-/* ✨ 여기에 커스텀 스타일 추가 가능 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* *********************************************
+   1) CSS 변수 (미니멀 라이트)
+   ********************************************* */
+/* 7집: GROWTH THEORY (청량 워터톤) */
+:root.growth-theme {
+    --color-bg: #eaf4fa;              /* 부드러운 물빛 */
+    --color-bg-secondary: #ffffff;    /* 흰색 배경 보조 */
+    --color-text-main: #2f2f2f;
+    --color-text-secondary: #4f4f4f;
+    --color-accent: #3B84C0;          /* 포인트: 맑은 바다색 */
+    --color-header-bg: #f2f7fa;       /* 헤더, 연한 물빛 */
+    --color-footer-bg: #f0f4f8;       /* 푸터, 매우 연한 물빛 */
+
+    --color-card-bg: #ffffff;
+    --color-card-border: #e5e7eb;
+    --color-card-shadow: rgba(0, 0, 0, 0.05);
+    --color-card-shadow-hover: rgba(0, 0, 0, 0.10);
+}
+
+/* 6집: END THEORY (핑크/베이지톤) */
+:root.end-theme {
+    --color-bg: #fdf9f3;
+    --color-bg-secondary: #ffffff;
+    --color-text-main: #2f2f2f;
+    --color-text-secondary: #5f5f5f;
+    --color-accent: #d46b7a;          /* 포인트: 핑크/코랄 계열 */
+    --color-header-bg: #f8f3ec;
+    --color-footer-bg: #f8f3ec;
+
+    --color-card-bg: #ffffff;
+    --color-card-border: #e5e7eb;
+    --color-card-shadow: rgba(0, 0, 0, 0.05);
+    --color-card-shadow-hover: rgba(0, 0, 0, 0.10);
+}
+
+/* *********************************************
+   2) 전역 스타일
+   ********************************************* */
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg-secondary) 70%);
+    color: var(--color-text-main);
+    transition: background 0.3s, color 0.3s;
+}
+
+.font-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* *********************************************
+   3) 커스텀 유틸
+   ********************************************* */
+.card-base {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--color-card-shadow);
+    transition: box-shadow 0.2s;
+}
+.card-base:hover {
+    box-shadow: 0 4px 10px var(--color-card-shadow-hover);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
+    color: #fff;
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+html {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    transition: background 0.3s ease, color 0.3s ease;
 }
