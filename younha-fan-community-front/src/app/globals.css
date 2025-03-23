@@ -1,0 +1,7 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* ✨ 여기에 커스텀 스타일 추가 가능 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}

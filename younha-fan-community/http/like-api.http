@@ -1,0 +1,21 @@
+### 게시글 좋아요 (성공)
+POST http://localhost:8080/api/posts/1/likes
+Authorization: Bearer
+
+### 게시글 좋아요 취소 (성공)
+DELETE http://localhost:8080/api/posts/1/likes
+Authorization: Bearer <JWT_TOKEN>
+
+### 게시글 좋아요 개수 조회
+GET http://localhost:8080/api/posts/1/likes/count
+
+### 댓글 좋아요 (성공)
+POST http://localhost:8080/api/posts/1/comments/5/likes
+Authorization: Bearer
+
+### 댓글 좋아요 취소 (성공)
+DELETE http://localhost:8080/api/posts/1/comments/2/likes
+Authorization: Bearer
+
+### 댓글 좋아요 개수 조회
+GET http://localhost:8080/api/posts/1/comments/4/likes/count
