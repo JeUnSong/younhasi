@@ -27,7 +27,7 @@ export default function Header() {
                     justify-between
                 "
             >
-                <h1 className="font-title text-2xl text-[var(--color-accent)]">
+                <h1 className="font-title text-2xl text-white">
                     <Link href="/">YOUNHASI</Link>
                 </h1>
 
@@ -36,10 +36,11 @@ export default function Header() {
                         <button
                             key={i}
                             className="
-                                text-[var(--color-text-main)]
-                                hover:text-accent
+                                text-white
+                                font-light
+                                hover:text-white/80
                                 transition
-                            "
+                              "
                         >
                             {menu}
                         </button>

@@ -62,7 +62,7 @@ export default function ThemeToggle() {
                                 px-3 py-1
                                 rounded-full
                                 text-sm font-medium
-                                bg-[#3B84C0] text-white
+                                bg-[#7cb3e4] text-white
                                 hover:bg-[#2c6ca0]
                                 transition
                               "
@@ -75,7 +75,7 @@ export default function ThemeToggle() {
                                 px-3 py-1
                                 rounded-full
                                 text-sm font-medium
-                                bg-[#d46b7a] text-white
+                                bg-[#e88898] text-white
                                 hover:bg-[#b54e5e]
                                 transition
                               "

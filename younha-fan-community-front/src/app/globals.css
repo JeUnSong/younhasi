@@ -4,9 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* *********************************************
-   1) CSS 변수 (미니멀 라이트)
-   ********************************************* */
 /* 7집: GROWTH THEORY (청량 워터톤) */
 :root.growth-theme {
     --color-bg: #eaf4fa;              /* 부드러운 물빛 */
@@ -14,7 +11,7 @@
     --color-text-main: #2f2f2f;
     --color-text-secondary: #4f4f4f;
     --color-accent: #3B84C0;          /* 포인트: 맑은 바다색 */
-    --color-header-bg: #f2f7fa;       /* 헤더, 연한 물빛 */
+    --color-header-bg: #7cb3e4;       /* 헤더, 연한 물빛 */
     --color-footer-bg: #f0f4f8;       /* 푸터, 매우 연한 물빛 */
 
     --color-card-bg: #ffffff;
@@ -30,7 +27,7 @@
     --color-text-main: #2f2f2f;
     --color-text-secondary: #5f5f5f;
     --color-accent: #d46b7a;          /* 포인트: 핑크/코랄 계열 */
-    --color-header-bg: #f8f3ec;
+    --color-header-bg: #e88898;
     --color-footer-bg: #f8f3ec;
 
     --color-card-bg: #ffffff;
@@ -68,7 +65,7 @@ body {
 }
 
 .bg-accent {
-    background-color: var(--color-accent);
+    background-color: var(--color-header-bg);
     color: #fff;
 }
 
