@@ -14,6 +14,14 @@ module.exports = {
             animation: {
                 starFloat: 'starFloat 10s linear infinite',
             },
+            colors: {
+                accent: 'var(--color-accent)',
+                'text-main': 'var(--color-text-main)',
+                'text-secondary': 'var(--color-text-secondary)',
+                'footer-bg': 'var(--color-footer-bg)',
+                'card-border': 'var(--color-card-border)',
+                // 필요 시 더 추가 가능
+            },
         },
     },
     plugins: [],

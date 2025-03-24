@@ -35,22 +35,38 @@ export default function HomeSections() {
     }, []);
 
     const noticeList = [
-        "🔸 첫 번째 공지글 (2025.02.26)",
-        "🔸 두 번째 공지글 (2025.01.06)",
-        "🔸 세 번째 공지글 (2024.08.09)",
-        "🔸 네 번째 공지글 (2024.08.08)",
-        "🔸 다섯 번째 공지글 (2024.08.07)",
-        "🔸 여섯 번째 공지글 (2024.08.07)",
-        "🔸 일곱 번째 공지글 (2024.08.07)",
-        "🔸 여덟 번째 공지글 (2024.08.07)",
-        "🔸 아홉 번째 공지글 (2024.08.07)",
-        "🔸 열 번째 공지글 (2024.08.07)",
-        "🔸 열하나 번째 공지글 (2024.08.07)",
-        "🔸 열두 번째 공지글 (2024.08.07)",
+        "첫 번째 공지글 (25.02.23)",
+        "두 번째 공지글 (25.01.06)",
+        "세 번째 공지글 (24.08.09)",
+        "네 번째 공지글 (24.08.08)",
+        "다섯 번째 공지글 (24.08.07)",
+        "여섯 번째 공지글 (24.08.07)",
+        "일곱 번째 공지글 (24.08.07)",
+        "여덟 번째 공지글 (24.08.07)",
+        "아홉 번째 공지글 (24.08.07)",
+        "열 번째 공지글 (24.08.07)",
+        "열하나 번째 공지글 (24.08.07)",
+        "열두 번째 공지글 (24.08.07)",
     ];
 
     const renderList = (items: string[]) =>
-        items.slice(0, 11).map((item, idx) => <li key={idx}>{item}</li>);
+        items.slice(0, 10).map((item, idx) => {
+            const match = item.match(/^(.*)\s+\((.*)\)$/);
+            const title = match?.[1] ?? item;
+            const date = match?.[2] ?? '';
+
+            return (
+                <li
+                    key={idx}
+                    className="flex justify-between items-center text-sm text-text-main mb-1"
+                >
+                    <div className="flex items-center gap-2">
+                        <span className="text-[13px]">{title}</span>
+                    </div>
+                    <span className="text-[11px] text-gray-400">{date}</span>
+                </li>
+            );
+        });
 
     const imageList = Array.from({ length: 6 }, (_, i) => `/dummy/insta/ins${i + 1}.png`);
 
@@ -113,10 +129,10 @@ export default function HomeSections() {
     };
 
     return (
-        <div className="grid grid-cols-4 gap-1 mb-10 py-5 text-[13px] leading-relaxed">
+        <div className="grid grid-cols-4 gap-1 mb-10 text-[13px] leading-relaxed">
             {/* NOTICE */}
             <div className="p-3 flex flex-col">
-                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
                     NOTICE
                 </h2>
                 <ul className="flex-1 overflow-auto">{renderList(noticeList)}</ul>
@@ -124,7 +140,7 @@ export default function HomeSections() {
 
             {/* TWITTER */}
             <div className="p-3 flex flex-col">
-                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
                     TWITTER
                 </h2>
                 <div className="flex-1 overflow-hidden">{renderTwitterFeed()}</div>
@@ -132,7 +148,7 @@ export default function HomeSections() {
 
             {/* INSTAGRAM */}
             <div className="p-3 flex flex-col">
-                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
                     INSTAGRAM
                 </h2>
                 {renderInstagramList(imageList)}
@@ -140,7 +156,39 @@ export default function HomeSections() {
 
             {/* YOUTUBE */}
             <div className="p-3 flex flex-col">
-                <h2 className="font-title text-accent text-base border-b pb-1 mb-2">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
+                    YOUTUBE
+                </h2>
+                {renderYoutube()}
+            </div>
+
+            {/* NOTICE */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
+                    NOTICE
+                </h2>
+                <ul className="flex-1 overflow-auto">{renderList(noticeList)}</ul>
+            </div>
+
+            {/* TWITTER */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
+                    TWITTER
+                </h2>
+                <div className="flex-1 overflow-hidden">{renderTwitterFeed()}</div>
+            </div>
+
+            {/* INSTAGRAM */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
+                    INSTAGRAM
+                </h2>
+                {renderInstagramList(imageList)}
+            </div>
+
+            {/* YOUTUBE */}
+            <div className="p-3 flex flex-col">
+                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
                     YOUTUBE
                 </h2>
                 {renderYoutube()}

@@ -4,49 +4,53 @@ export default function Header() {
     return (
         <header
             className="
-                w-full
-                bg-[var(--color-header-bg)]
-                border-b
-                border-[var(--color-card-border)]
-            "
+                        w-full
+                        bg-[var(--color-header-bg)]
+                        border-b
+                        py-1
+                        border-[var(--color-card-border)]
+                      "
         >
-            {/*
-                컨테이너 역할:
-                - 최대 폭: 너가 원하는 사이즈 (예: max-w-screen-lg, max-w-6xl 등)
-                - mx-auto로 중앙 정렬
-                - px-6 등 패딩은 넣어서 양옆 공백 확보
-            */}
             <div
                 className="
-                    max-w-6xl
-                    mx-auto
-                    px-6
-                    py-3
-                    flex
-                    items-center
-                    justify-between
-                "
+                          max-w-6xl
+                          mx-auto
+                          px-6
+                          py-3
+                          flex
+                          items-center
+                          justify-between
+                        "
             >
-                <h1 className="font-title text-2xl text-white">
+                <h1 className="font-logo text-xl font-bold tracking-wider text-white">
                     <Link href="/">YOUNHASI</Link>
                 </h1>
 
-                <nav className="flex gap-4">
-                    {['공지사항', 'TO YOUNHA', '자유게시판', '최신쇼츠486'].map((menu, i) => (
-                        <button
-                            key={i}
-                            className="
-                                font-nav
-                                text-white
-                                font-normal
-                                hover:text-white/80
-                                transition
-                              "
-                        >
-                            {menu}
-                        </button>
-                    ))}
-                </nav>
+                <div className="flex items-center gap-6">
+                    <nav className="flex gap-6">
+                        {["공지사항", "TO YOUNHA", "자유게시판", "최신쇼츠486"].map((menu, i) => (
+                            <button
+                                key={i}
+                                className="
+                                          font-nav
+                                          text-white
+                                          text-sm
+                                          font-medium
+                                          tracking-wide
+                                          hover:text-white/80
+                                          transition
+                                        "
+                            >
+                                {menu}
+                            </button>
+                        ))}
+                    </nav>
+
+                    {/* 로그인 버튼 */}
+                    <button className="ml-4 text-white text-sm font-semibold hover:text-white/80 transition">
+                        로그인
+                    </button>
+                </div>
             </div>
         </header>
     );

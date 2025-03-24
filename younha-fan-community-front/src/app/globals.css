@@ -14,6 +14,8 @@
     --color-header-bg: #7cb3e4;       /* 헤더, 연한 물빛 */
     --color-footer-bg: #f0f4f8;       /* 푸터, 매우 연한 물빛 */
 
+    --border-accent: #7cb3e4;
+
     --color-card-bg: #ffffff;
     --color-card-border: #e5e7eb;
     --color-card-shadow: rgba(0, 0, 0, 0.05);
@@ -29,6 +31,8 @@
     --color-accent: #d46b7a;          /* 포인트: 핑크/코랄 계열 */
     --color-header-bg: #e88898;
     --color-footer-bg: #f8f3ec;
+
+    --border-accent: #e88898;
 
     --color-card-bg: #ffffff;
     --color-card-border: #e5e7eb;
@@ -46,8 +50,12 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-.font-title {
+.font-logo {
     font-family: 'Playfair Display', serif;
+}
+
+.font-title {
+    font-family: 'Noto Sans KR', 'sans-serif';
 }
 
 .font-nav {
@@ -57,17 +65,6 @@ body {
 /* *********************************************
    3) 커스텀 유틸
    ********************************************* */
-.card-base {
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px var(--color-card-shadow);
-    transition: box-shadow 0.2s;
-}
-.card-base:hover {
-    box-shadow: 0 4px 10px var(--color-card-shadow-hover);
-}
-
 .bg-accent {
     background-color: var(--color-header-bg);
     color: #fff;
@@ -75,6 +72,10 @@ body {
 
 .text-accent {
     color: var(--color-accent);
+}
+
+.border-accent{
+    border-color: var(--border-accent);
 }
 
 html {
