@@ -8,7 +8,7 @@ export default function Home() {
                 {/* 상단 영역 */}
                 <div className="h-[500px] relative flex items-center justify-center overflow-hidden text-white">
                     {/* 배경 별 */}
-                    <div className="absolute inset-0 bg-[url('/star-DpvJGKxE.png')] bg-cover opacity-20 animate-starFloat" />
+                    <div className="absolute inset-0 bg-cover opacity-20 animate-starFloat" />
                     {/* 메인 일러스트 */}
                     <MainIllustration />
                     {/* 하단 그라데이션 블러 */}

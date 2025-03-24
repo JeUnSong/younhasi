@@ -102,10 +102,10 @@ export default function HomeSections() {
         return (
             <div className="w-full aspect-square relative overflow-hidden">
                 <iframe
-                    src={`https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1`}
+                    src={`https://www.youtube.com/embed/${videoId}?rel=0`}
                     className="w-full h-full"
                     title="YouTube video"
-                    allow="autoplay; encrypted-media"
+                    allow="encrypted-media"
                     allowFullScreen
                 />
             </div>
