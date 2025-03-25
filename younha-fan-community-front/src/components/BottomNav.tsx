@@ -135,7 +135,7 @@ export default function HomeSections() {
                 <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
                     NOTICE
                 </h2>
-                <ul className="flex-1 overflow-auto">{renderList(noticeList)}</ul>
+                <div className="flex-1 overflow-auto">{renderList(noticeList)}</div>
             </div>
 
             {/* TWITTER */}
