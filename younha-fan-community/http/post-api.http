@@ -31,3 +31,7 @@ GET http://localhost:8080/api/posts?page=0&size=10
 
 ### 특정 게시판 목록 조회
 GET http://localhost:8080/api/posts?boardType=FREE&page=0&size=10
+
+
+###
+GET http://localhost:8080/api/instagram/latest
