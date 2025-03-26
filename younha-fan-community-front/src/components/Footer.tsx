@@ -13,7 +13,7 @@ export default function Footer() {
                       "
         >
             <div className="text-[14px] mb-2">
-                © 2025, 함께 성장하는 팬 커뮤니티<span className="text-accent text-[13px] align-middle ml-1">♥</span>
+                © 2025 YOUNHASI | Made with love at 4:29<span className="text-accent text-[13px] align-middle ml-1">♥</span>
             </div>
             <div className="space-x-4 text-[11px] text-neutral-400">
                 <a href="#" className="hover:underline">이용약관</a>
