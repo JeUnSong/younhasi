@@ -1,5 +1,6 @@
 import feedparser
 import requests
+import html
 
 def fetch_instagram_from_rss(rss_url, max_posts=6):
     feed = feedparser.parse(rss_url)
@@ -14,7 +15,8 @@ def fetch_instagram_from_rss(rss_url, max_posts=6):
         if '<img' in content:
             start = content.find('src="') + 5
             end = content.find('"', start)
-            image_url = content[start:end]
+            raw_url = content[start:end]
+            image_url = html.unescape(raw_url)
 
         results.append({
             "title": title,

@@ -22,6 +22,7 @@ public class InstagramPost {
     @Column(unique = true)
     private String postUrl;
 
+    @Column(length = 1000)
     private String imageUrl;
 
     private LocalDateTime createdAt;

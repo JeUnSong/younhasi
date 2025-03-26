@@ -13,6 +13,12 @@ const twitterFeed = [
     },
 ];
 
+type InstagramPost = {
+    title: string;
+    imageUrl: string;
+    postUrl: string;
+};
+
 export default function HomeSections() {
     const [videoId, setVideoId] = useState<string | null>(null);
 
@@ -68,19 +74,36 @@ export default function HomeSections() {
             );
         });
 
-    const imageList = Array.from({ length: 6 }, (_, i) => `/dummy/insta/ins${i + 1}.png`);
+    const InstagramGrid = () => {
+        const [posts, setPosts] = useState<InstagramPost[]>([]);
 
-    const renderInstagramList = (images: string[]) => (
-        <ul className="grid grid-cols-3 grid-rows-3 gap-2">
-            {images.slice(0, 6).map((src, idx) => (
-                <li key={idx} className={idx === 0 ? "col-span-2 row-span-2" : ""}>
-                    <div className="w-full aspect-square relative overflow-hidden">
-                        <Image src={src} alt={`insta-${idx}`} fill className="object-cover" />
-                    </div>
-                </li>
-            ))}
-        </ul>
-    );
+        useEffect(() => {
+            fetch("http://localhost:8080/api/instagram/latest")
+                .then(res => res.json())
+                .then(data => setPosts(data))
+                .catch(err => console.error("❌ 인스타 데이터 불러오기 실패", err));
+        }, []);
+
+        const renderInstagramList = (posts: InstagramPost[]) => (
+            <ul className="grid grid-cols-3 grid-rows-3 gap-2">
+                {posts.slice(0, 6).map((post, idx) => (
+                    <li key={idx} className={idx === 0 ? "col-span-2 row-span-2" : ""}>
+                        <a href={post.postUrl} target="_blank" rel="noopener noreferrer">
+                            <div className="w-full aspect-square relative overflow-hidden">
+                                <img
+                                    src={post.imageUrl}
+                                    alt={post.title || `insta-${idx}`}
+                                    className="object-cover w-full h-full"
+                                />
+                            </div>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        );
+
+        return <>{renderInstagramList(posts)}</>;
+    };
 
     const renderTwitterFeed = () => (
         <div className="space-y-4">
@@ -148,42 +171,10 @@ export default function HomeSections() {
 
             {/* INSTAGRAM */}
             <div className="p-3 flex flex-col">
-                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
+                <a href="https://www.instagram.com/younha_holic/" className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2" target='_blank'>
                     INSTAGRAM
-                </h2>
-                {renderInstagramList(imageList)}
-            </div>
-
-            {/* YOUTUBE */}
-            <div className="p-3 flex flex-col">
-                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
-                    YOUTUBE
-                </h2>
-                {renderYoutube()}
-            </div>
-
-            {/* NOTICE */}
-            <div className="p-3 flex flex-col">
-                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
-                    NOTICE
-                </h2>
-                <ul className="flex-1 overflow-auto">{renderList(noticeList)}</ul>
-            </div>
-
-            {/* TWITTER */}
-            <div className="p-3 flex flex-col">
-                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
-                    TWITTER
-                </h2>
-                <div className="flex-1 overflow-hidden">{renderTwitterFeed()}</div>
-            </div>
-
-            {/* INSTAGRAM */}
-            <div className="p-3 flex flex-col">
-                <h2 className="font-titletext-sm font-semibold tracking-wide text-accent border-b border-accent pb-1 mb-2">
-                    INSTAGRAM
-                </h2>
-                {renderInstagramList(imageList)}
+                </a>
+                <InstagramGrid />
             </div>
 
             {/* YOUTUBE */}
