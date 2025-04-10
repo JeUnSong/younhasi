@@ -2,6 +2,8 @@ export default function Footer() {
     return (
         <footer
             className="
+                        relative
+                        z-20
                         w-full
                         py-7
                         text-center

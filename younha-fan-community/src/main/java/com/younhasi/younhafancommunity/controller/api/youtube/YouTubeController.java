@@ -26,7 +26,7 @@ public class YouTubeController {
         String url = "https://www.googleapis.com/youtube/v3/search" +
                 "?key=" + apiKey +
                 "&channelId=" + channelId +
-                "&part=snippet,id&order=date&maxResults=1";
+                "&part=snippet,id&order=date&maxResults=3";
 
         String response = restTemplate.getForObject(url, String.class);
         return ResponseEntity.ok(response);

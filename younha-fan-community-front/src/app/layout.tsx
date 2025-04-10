@@ -12,8 +12,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <main className="min-h-screen">{children}</main>
                 <Footer />
 
-                <YTunerPanel />
-                <YTunerToggle />
+                {/*<YTunerPanel />
+                <YTunerToggle />*/}
             </body>
         </html>
     );
