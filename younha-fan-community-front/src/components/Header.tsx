@@ -9,7 +9,7 @@ export default function Header() {
 
     useEffect(() => {
         const onScroll = () => {
-            setScrolled(window.scrollY > 5); // 10px 이상 스크롤 시 효과 발동
+            setScrolled(window.scrollY > 5); // 5px 이상 스크롤 시 효과 발동
         };
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);

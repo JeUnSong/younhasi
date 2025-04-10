@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <div className="relative z-0">
 
-            {/* 메인 Hero 영역 (fixed로 고정) */}
+            {/* 메인 Hero 영역*/}
             <div className="fixed top-0 left-0 right-0 h-screen overflow-hidden -z-10">
                 <img
                     src="/dummy/maxresdefault.jpg"

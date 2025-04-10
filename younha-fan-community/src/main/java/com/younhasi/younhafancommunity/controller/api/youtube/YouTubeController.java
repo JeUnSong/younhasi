@@ -30,32 +30,30 @@ public class YouTubeController {
 
     @GetMapping("/latest")
     public ResponseEntity<String> getRegularVideos() throws Exception {
-        return fetchVideos(false);
+        return fetchVideos(false, 3); // 일반 영상 3개
     }
 
     @GetMapping("/shorts")
     public ResponseEntity<String> getShortsVideos() throws Exception {
-        return fetchVideos(true);
+        return fetchVideos(true, 6); // 숏츠 6개
     }
 
-    private ResponseEntity<String> fetchVideos(boolean isShorts) throws Exception {
-        // 1. search API 호출 → 최근 영상들
+    private ResponseEntity<String> fetchVideos(boolean isShorts, int maxCount) throws Exception {
         String searchUrl = "https://www.googleapis.com/youtube/v3/search" +
                 "?key=" + apiKey +
                 "&channelId=" + channelId +
-                "&part=snippet,id&order=date&type=video&maxResults=15";
+                "&part=snippet,id&order=date&type=video&maxResults=50";
 
         String searchResponse = restTemplate.getForObject(searchUrl, String.class);
         JsonNode searchJson = objectMapper.readTree(searchResponse);
-        List<String> videoIds = new ArrayList<>();
 
+        List<String> videoIds = new ArrayList<>();
         for (JsonNode item : searchJson.get("items")) {
             if (item.has("id") && item.get("id").has("videoId")) {
                 videoIds.add(item.get("id").get("videoId").asText());
             }
         }
 
-        // 2. videos API → 각 영상 길이 조회
         String detailsUrl = "https://www.googleapis.com/youtube/v3/videos" +
                 "?key=" + apiKey +
                 "&part=snippet,contentDetails" +
@@ -67,18 +65,26 @@ public class YouTubeController {
         List<JsonNode> filtered = new ArrayList<>();
 
         for (JsonNode item : detailsJson.get("items")) {
-            String durationStr = item.get("contentDetails").get("duration").asText(); // ISO 8601 format
-            Duration duration = javax.xml.datatype.DatatypeFactory.newInstance()
+            String durationStr = item.get("contentDetails").get("duration").asText();
+            long millis = javax.xml.datatype.DatatypeFactory.newInstance()
                     .newDuration(durationStr)
-                    .getTimeInMillis(new Date()) >= 60_000 ? Duration.ofMillis(61_000) : Duration.ofMillis(59_000); // 단순 필터용 파싱
+                    .getTimeInMillis(new Date());
 
-            boolean isShort = duration.toSeconds() <= 60;
+            boolean isShort = (millis / 1000) <= 60;
+            String title = item.get("snippet").get("title").asText().toLowerCase();
+            boolean hasShorts486InTitle = title.contains("shorts 486");
 
-            if ((isShorts && isShort) || (!isShorts && !isShort)) {
-                filtered.add(item);
+            if (isShorts) {
+                if (isShort && hasShorts486InTitle) {
+                    filtered.add(item);
+                }
+            } else {
+                if (!isShort || !hasShorts486InTitle) {
+                    filtered.add(item);
+                }
             }
 
-            if (filtered.size() == 3) break;
+            if (filtered.size() >= maxCount) break;
         }
 
         String finalJson = objectMapper.writeValueAsString(filtered);

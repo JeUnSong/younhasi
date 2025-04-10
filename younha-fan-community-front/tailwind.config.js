@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        './src/**/*.{js,ts,jsx,tsx}',
-    ],
+    content: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
             keyframes: {
@@ -20,9 +18,10 @@ module.exports = {
                 'text-secondary': 'var(--color-text-secondary)',
                 'footer-bg': 'var(--color-footer-bg)',
                 'card-border': 'var(--color-card-border)',
-                // 필요 시 더 추가 가능
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/line-clamp'), // ✅ 이렇게 추가!
+    ],
 };
