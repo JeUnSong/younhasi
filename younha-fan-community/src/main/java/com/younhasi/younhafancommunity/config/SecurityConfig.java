@@ -26,7 +26,13 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/signup", "/api/users/login", "/api/youtube/latest", "/api/instagram/latest", "/api/instagram/update").permitAll()
+                        .requestMatchers(
+                                "/api/users/signup",
+                                "/api/users/login",
+                                "/api/youtube/latest",
+                                "/api/youtube/shorts",
+                                "/api/instagram/latest",
+                                "/api/instagram/update").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
                         .anyRequest().authenticated()
                 )

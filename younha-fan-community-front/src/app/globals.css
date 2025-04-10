@@ -50,25 +50,13 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-.font-logo {
-    font-family: 'Playfair Display', serif;
-}
-
 .font-title {
     font-family: 'Noto Sans KR', 'sans-serif';
-}
-
-.font-nav {
-    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 }
 
 /* *********************************************
    3) 커스텀 유틸
    ********************************************* */
-.bg-accent {
-    background-color: var(--color-header-bg);
-    color: #fff;
-}
 
 .text-accent {
     color: var(--color-accent);
@@ -76,10 +64,4 @@ body {
 
 .border-accent{
     border-color: var(--border-accent);
-}
-
-html {
-    background-color: var(--color-bg);
-    color: var(--color-text-main);
-    transition: background 0.3s ease, color 0.3s ease;
 }

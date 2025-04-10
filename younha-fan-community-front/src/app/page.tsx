@@ -26,15 +26,10 @@ export default function Home() {
 
             {/* 히어로 텍스트 */}
             <div className="relative z-10 flex flex-col items-center justify-center h-screen px-6 text-center text-white">
-                <h1 className="text-5xl font-bold mb-6 tracking-widest font-logo text-accent drop-shadow-md">
-                    YOUNHA FANPAGE
-                </h1>
-                <p className="text-lg mb-10 font-title text-[var(--color-text-secondary)]">
-                    Welcome to the world of Younha ✨
-                </p>
+
             </div>
 
-            {/* 서브 콘텐츠 (예: 최신 콘텐츠 섹션) */}
+            {/* 서브 콘텐츠*/}
             <SubContent />
         </div>
     );

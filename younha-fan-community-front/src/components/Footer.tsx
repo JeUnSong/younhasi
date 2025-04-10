@@ -20,9 +20,9 @@ export default function Footer() {
             <div className="space-x-4 text-[11px] text-neutral-400">
                 <a href="https://www.instagram.com/younha_holic/" className="hover:underline" target="_blank">Instagram</a>
                 <a className="hover:underline">|</a>
-                <a href="https://www.youtube.com/@YOUNHAOFFICIAL" className="hover:underline" target="_blank">YouTube</a>
+                <a href="https://www.youtube.com/@YOUNHAOFFICIAL/" className="hover:underline" target="_blank">YouTube</a>
                 <a className="hover:underline">|</a>
-                <a href="https://x.com/younhaholic" className="hover:underline" target="_blank">Twitter</a>
+                <a href="https://x.com/younhaholic/" className="hover:underline" target="_blank">Twitter</a>
             </div>
         </footer>
     );

@@ -18,10 +18,10 @@ export default function Header() {
     return (
         <header
             className={classNames(
-                "fixed top-0 left-0 right-0 z-20 px-6 py-4 flex justify-between items-center text-white text-sm font-medium transition-all duration-300",
+                "fixed top-0 left-0 right-0 z-20 px-6 py-4 flex justify-between items-center  text-sm font-medium transition-all duration-300",
                 scrolled
-                    ? "bg-black/80 backdrop-blur-md shadow-md"
-                    : "bg-transparent"
+                    ? "bg-[var(--color-bg)] backdrop-blur-md shadow-md text-black"
+                    : "bg-transparent text-white"
             )}
         >
             <div className="text-lg font-bold tracking-wide">
@@ -29,8 +29,8 @@ export default function Header() {
             </div>
             <nav className="space-x-6">
                 <Link href="/" className="hover:underline">HOME</Link>
-                <Link href="#" className="hover:underline">NEWS</Link>
-                <Link href="#" className="hover:underline">PROFILE</Link>
+                <Link href="#" className="hover:underline">공지사항</Link>
+                <Link href="#" className="hover:underline">자유게시판</Link>
                 <Link href="#" className="hover:underline">DISCOGRAPHY</Link>
             </nav>
         </header>
