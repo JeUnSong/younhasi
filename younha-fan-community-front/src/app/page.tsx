@@ -15,11 +15,19 @@ export default function Home() {
         <div className="relative z-0">
 
             {/* 메인 Hero 영역*/}
-            <div className="fixed top-0 left-0 right-0 h-screen overflow-hidden -z-10">
+            <div className="fixed top-0 left-0 right-0 w-full h-screen md:h-[100vh] overflow-hidden -z-10">
+                {/* 데스크탑/태블릿용 */}
                 <img
-                    src="/dummy/maxresdefault.jpg"
-                    className="w-full h-full object-cover"
-                    alt="hero background"
+                    src="/dummy/bg-desktop.jpg"
+                    alt="background"
+                    className="hidden md:block w-full h-full object-cover object-center"
+                />
+
+                {/* 모바일용 */}
+                <img
+                    src="/dummy/bg-mobile.jpg"
+                    alt="mobile background"
+                    className="block md:hidden w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-black/40" />
             </div>

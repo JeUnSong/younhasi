@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function SubContent() {
     const [videos, setVideos] = useState<any[]>([]);
     const [shorts, setShorts] = useState<any[]>([]);
+    const [playingIds, setPlayingIds] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchVideos = async () => {
@@ -27,35 +28,66 @@ export default function SubContent() {
 
     const renderCards = (data: any[], type: "video" | "short") => {
         return data.map((video, idx) => {
-            const videoId = video.id;
-            const { title, thumbnails } = video.snippet;
+            const { id, title, thumbnail } = video;
+            const isPlaying = playingIds.includes(id);
+
+            const handlePlay = () => {
+                setPlayingIds((prev) => [...prev, id]);
+            };
 
             return (
-                <a
+                <div
                     key={idx}
-                    href={`https://www.youtube.com/watch?v=${videoId}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className={`bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition ${
                         type === "short" ? "" : "block"
                     }`}
                 >
                     <div className={type === "short" ? "w-full aspect-[9/16] bg-black" : "w-full h-48"}>
-                        <img
-                            src={thumbnails.high.url}
-                            alt={title}
-                            className="w-full h-full object-cover"
-                        />
+                        {isPlaying ? (
+                            <iframe
+                                className="w-full h-full"
+                                src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1`}
+                                title={title}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        ) : (
+                            <div className="relative w-full h-full cursor-pointer" onClick={handlePlay}>
+                                <img
+                                    src={thumbnail}
+                                    alt={title}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-14 h-14 text-white opacity-90"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <div className={`p-3 ${type === "short" ? "text-sm" : "p-4"}`}>
                         <p className="text-sm text-[var(--color-text-secondary)] mb-1">
                             {type === "short" ? "" : "유튜브"}
                         </p>
                         <h3 className={`font-semibold leading-tight ${type === "short" ? "text-sm line-clamp-2" : "text-base"}`}>
-                            {title}
+                            <a
+                                href={`https://www.youtube.com/watch?v=${id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                            >
+                                {title}
+                            </a>
                         </h3>
                     </div>
-                </a>
+                </div>
             );
         });
     };
