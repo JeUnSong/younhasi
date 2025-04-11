@@ -11,7 +11,7 @@
     --color-text-main: #2f2f2f;
     --color-text-secondary: #4f4f4f;
     --color-accent: #3B84C0;          /* 포인트: 맑은 바다색 */
-    --color-header-bg: #7cb3e4;       /* 헤더, 연한 물빛 */
+    --color-header-bg: #e0eff7;       /* 헤더, 연한 물빛 */
     --color-footer-bg: #f0f4f8;       /* 푸터, 매우 연한 물빛 */
 
     --border-accent: #7cb3e4;
@@ -20,6 +20,9 @@
     --color-card-border: #e5e7eb;
     --color-card-shadow: rgba(0, 0, 0, 0.05);
     --color-card-shadow-hover: rgba(0, 0, 0, 0.10);
+
+    --hero-bg-desktop: url('/dummy/bg-desktop.png');
+    --hero-bg-mobile: url('/dummy/bg-mobile.png');
 }
 
 /* 6집: END THEORY (핑크/베이지톤) */
@@ -29,7 +32,7 @@
     --color-text-main: #2f2f2f;
     --color-text-secondary: #5f5f5f;
     --color-accent: #d46b7a;          /* 포인트: 핑크/코랄 계열 */
-    --color-header-bg: #e88898;
+    --color-header-bg: #f7efe7;
     --color-footer-bg: #f8f3ec;
 
     --border-accent: #e88898;
@@ -38,6 +41,9 @@
     --color-card-border: #e5e7eb;
     --color-card-shadow: rgba(0, 0, 0, 0.05);
     --color-card-shadow-hover: rgba(0, 0, 0, 0.10);
+
+    --hero-bg-desktop: url('/dummy/bg-desktop2.png');
+    --hero-bg-mobile: url('/dummy/bg-desktop2.png');
 }
 
 /* *********************************************
@@ -54,6 +60,10 @@ body {
     font-family: 'Noto Sans KR', 'sans-serif';
 }
 
+html {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
 /* *********************************************
    3) 커스텀 유틸
    ********************************************* */
@@ -64,4 +74,115 @@ body {
 
 .border-accent{
     border-color: var(--border-accent);
+}
+
+.writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+nav a:hover,
+nav a:focus {
+    border-bottom: 2px solid var(--color-accent);
+}
+
+/* *********************************************
+   4) 튜너
+   ********************************************* */
+@media (max-width: 768px) {
+    .fab-wrapper {
+        display: none;
+    }
+}
+
+.fab-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+    width: 40px;
+    height: 40px;
+}
+
+.fab-btn {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #0017ff, #f34ef9, #ff3a00);
+    color: white;
+    font-size: 28px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: heartbeat 1s infinite ease-in-out;
+
+
+}
+
+.fab-btn:hover {
+    box-shadow: 0 0 12px #f607ff, 0 0 24px #ffe700;
+    transform: scale(1.08);
+    transition: all 0.2s ease;
+}
+
+.fab-ripple {
+    animation: ripple-wave 1s infinite ease-out;
+}
+
+.fab-ripple2 {
+    animation: ripple-wave2 1.5s infinite ease-out;
+}
+
+.fab-ripple, .fab-ripple2 {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0017ff, #f34ef9, #ff3a00);
+
+    opacity: 0.9;
+    z-index: 1;
+}
+
+@keyframes ripple-wave {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.6);
+        opacity: 0;
+    }
+}
+
+@keyframes ripple-wave2 {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.6);
+        opacity: 0;
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.01);
+    }
+    60% {
+        transform: scale(1);
+    }
 }
